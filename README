@@ -1,0 +1,24 @@
+# itunginDong
+
+**itunginDong** is a simple and user-friendly group expense splitter application built with Streamlit.  
+It helps users calculate shared expenses, debts, and settlements between friends, similar to a split bill feature but with more flexible input options.
+
+Users can add custom participants, record expenses paid by different people, include optional tax, split costs equally or manually, and generate a receipt-style summary showing who should pay whom.
+
+## Features
+
+- Add unlimited participants dynamically
+- Record shared expenses with payer and participants
+- Optional tax calculation
+- Equal or custom split support
+- Automatic debt settlement calculation
+- Receipt-style transaction summary
+- Download receipt
+- Share settlement result via WhatsApp
+- Clean and beginner-friendly Streamlit UI
+
+## Tech Stack
+
+- Python
+- Streamlit
+- Pandas
