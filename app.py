@@ -209,7 +209,7 @@ def make_receipt(trip_name: str, people: list[str], expenses: list[dict], settle
 
 def init_state():
     if "people_df" not in st.session_state:
-        st.session_state.people_df = pd.DataFrame({"Nama": [""]})
+        st.session_state.people_df = pd.DataFrame({"Nama": ["siti", "ade", "azza", "asa"]})
     if "expenses" not in st.session_state:
         st.session_state.expenses = []
     if "edit_index" not in st.session_state:
