@@ -209,7 +209,7 @@ def make_receipt(trip_name: str, people: list[str], expenses: list[dict], settle
 
 def init_state():
     if "people_df" not in st.session_state:
-        st.session_state.people_df = pd.DataFrame({"Nama": ["siti", "ade", "azza", "asa"]})
+        st.session_state.people_df = pd.DataFrame({"Nama": [""]})
     if "expenses" not in st.session_state:
         st.session_state.expenses = []
     if "edit_index" not in st.session_state:
@@ -470,3 +470,5 @@ else:
         )
         whatsapp_text = quote(receipt)
         st.link_button("📲 Share ke WhatsApp", f"https://wa.me/?text={whatsapp_text}", use_container_width=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
