@@ -182,7 +182,7 @@ def make_receipt(trip_name: str, people: list[str], expenses: list[dict], settle
         tax_text = f" + tax {tax_value:g}%" if tax_value > 0 else ""
         lines.append(f"{idx}. {exp['item']}")
         lines.append(f"   Dibayar oleh : {exp['payer']}")
-        lines.append(f"   Nama      : {', '.join(exp['participants'])}")
+        lines.append(f"   Peserta      : {', '.join(exp['participants'])}")
         lines.append(f"   Total        : {rupiah(total)}{tax_text}")
         lines.append(f"   Metode       : {exp['split_mode']}")
         if exp["split_mode"] == "Custom nominal":
@@ -315,7 +315,7 @@ else:
 
         if split_mode == "Custom nominal" and participants:
             st.info(
-                f"Total final transaksi ini: {rupiah(total_final)}. Isi nominal porsi tiap Nama sampai totalnya sama."
+                f"Total final transaksi ini: {rupiah(total_final)}. Isi nominal porsi tiap peserta sampai totalnya sama."
             )
             old_custom = edit_exp.get("custom_shares", {}) if is_editing else {}
             custom_df = pd.DataFrame({
@@ -395,7 +395,7 @@ else:
         with action_col:
             st.markdown(f'<div class="transaction-title">{idx + 1}. {exp["item"]}</div>', unsafe_allow_html=True)
             st.markdown(
-                f'<div class="small-muted">Dibayar oleh <b>{exp["payer"]}</b> • Nama: {", ".join(exp["participants"])}<br>'
+                f'<div class="small-muted">Dibayar oleh <b>{exp["payer"]}</b> • Peserta: {", ".join(exp["participants"])}<br>'
                 f'Total final: <b>{rupiah(total)}</b> • Metode: {exp["split_mode"]}</div>',
                 unsafe_allow_html=True,
             )
@@ -472,47 +472,3 @@ else:
         st.link_button("📲 Share ke WhatsApp", f"https://wa.me/?text={whatsapp_text}", use_container_width=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
-
-# =========================
-# DEMO BUTTON
-# =========================
-with st.expander("✨ Isi contoh otomatis: Trip Jogja"):
-    st.write("Contoh: siti bayarin es dawet, azza bayarin GoCar, ade bayarin gelang termasuk asa yang nitip.")
-    if st.button("Pakai data contoh"):
-        st.session_state.people_df = pd.DataFrame({"Nama": ["siti", "ade", "azza", "asa"]})
-        st.session_state.expenses = [
-            {
-                "item": "Es dawet",
-                "payer": "siti",
-                "participants": ["siti", "ade", "azza"],
-                "amount": 24000.0,
-                "tax_percent": 10.0,
-                "split_mode": "Sama rata",
-                "custom_shares": {},
-            },
-            {
-                "item": "GoCar",
-                "payer": "azza",
-                "participants": ["siti", "ade", "azza"],
-                "amount": 12000.0,
-                "tax_percent": 0.0,
-                "split_mode": "Sama rata",
-                "custom_shares": {},
-            },
-            {
-                "item": "Gelang titipan",
-                "payer": "ade",
-                "participants": ["siti", "ade", "azza", "asa"],
-                "amount": 80000.0,
-                "tax_percent": 0.0,
-                "split_mode": "Custom nominal",
-                "custom_shares": {
-                    "siti": 20000.0,
-                    "ade": 20000.0,
-                    "azza": 20000.0,
-                    "asa": 20000.0,
-                },
-            },
-        ]
-        st.session_state.edit_index = None
-        st.rerun()
