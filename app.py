@@ -182,7 +182,7 @@ def make_receipt(trip_name: str, people: list[str], expenses: list[dict], settle
         tax_text = f" + tax {tax_value:g}%" if tax_value > 0 else ""
         lines.append(f"{idx}. {exp['item']}")
         lines.append(f"   Dibayar oleh : {exp['payer']}")
-        lines.append(f"   Peserta      : {', '.join(exp['participants'])}")
+        lines.append(f"   Nama      : {', '.join(exp['participants'])}")
         lines.append(f"   Total        : {rupiah(total)}{tax_text}")
         lines.append(f"   Metode       : {exp['split_mode']}")
         if exp["split_mode"] == "Custom nominal":
@@ -315,7 +315,7 @@ else:
 
         if split_mode == "Custom nominal" and participants:
             st.info(
-                f"Total final transaksi ini: {rupiah(total_final)}. Isi nominal porsi tiap peserta sampai totalnya sama."
+                f"Total final transaksi ini: {rupiah(total_final)}. Isi nominal porsi tiap Nama sampai totalnya sama."
             )
             old_custom = edit_exp.get("custom_shares", {}) if is_editing else {}
             custom_df = pd.DataFrame({
@@ -395,7 +395,7 @@ else:
         with action_col:
             st.markdown(f'<div class="transaction-title">{idx + 1}. {exp["item"]}</div>', unsafe_allow_html=True)
             st.markdown(
-                f'<div class="small-muted">Dibayar oleh <b>{exp["payer"]}</b> • Peserta: {", ".join(exp["participants"])}<br>'
+                f'<div class="small-muted">Dibayar oleh <b>{exp["payer"]}</b> • Nama: {", ".join(exp["participants"])}<br>'
                 f'Total final: <b>{rupiah(total)}</b> • Metode: {exp["split_mode"]}</div>',
                 unsafe_allow_html=True,
             )
