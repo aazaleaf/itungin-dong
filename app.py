@@ -470,5 +470,3 @@ else:
         )
         whatsapp_text = quote(receipt)
         st.link_button("📲 Share ke WhatsApp", f"https://wa.me/?text={whatsapp_text}", use_container_width=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
